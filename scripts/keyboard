@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+#
+
+xset_output="$(xset q)"
+
+if [ -z "$BLOCK_INSTANCE" ];
+then
+        exit 0
+fi
+
+keystatus=$(echo $xset_output | grep "${BLOCK_INSTANCE}" | sed "s/.*${BLOCK_INSTANCE}:[ ]*\([^ ]*\).*/\1/")
+
+if [ "${BLOCK_INSTANCE}" = "Caps Lock" ];
+then
+        KEY="⇪"
+elif [ "${BLOCK_INSTANCE}" = "Num Lock" ];
+then
+        KEY="⌘"
+else
+        exit 0
+fi
+
+if [ ${keystatus} = "off" ];
+then
+        COLOR="#FF0000"
+else
+        COLOR="#00FF00"
+fi
+
+printf "%s\n\n%s\n" ${KEY} ${COLOR}
+exit 0

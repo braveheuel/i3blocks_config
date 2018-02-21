@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+#
+printf "\n\n\n"
+
+if [ $BLOCK_BUTTON eq 1 ];
+then
+        i3lock
+fi
